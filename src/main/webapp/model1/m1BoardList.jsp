@@ -10,7 +10,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>m1 Board List</title>
+		<title>MODEL1 BOARD LIST</title>
 	</head>
 	
 	<body>
@@ -36,7 +36,7 @@
 						<tr>
 							<td><%=b.getNo()%></td>
 							<td>
-								<a href='<%=request.getContextPath()%>/jsp/jspBoardOne.jsp?no=<%=b.getNo()%>'>
+								<a href='<%=request.getContextPath()%>/model1/m1BoardOne.jsp?no=<%=b.getNo()%>'>
 									<%=b.getTitle()%>
 								</a>
 							</td>

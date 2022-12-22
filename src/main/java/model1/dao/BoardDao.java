@@ -24,4 +24,29 @@ public class BoardDao {
 		}
 		return list;
 	}
+
+	// selectOne
+	public Board selectBoardOne(Connection conn, int no) throws Exception {
+		// ResultSet으로 반환타입 별로 => 평범한 타입 => list사용 = 보편적 타입
+		Board board = new Board ();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		// db연결
+		String sql ="SELECT no, title, content FROM board WHERE no = ?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, no);
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			board.setNo(rs.getInt("no"));
+			board.setTitle(rs.getString("title"));
+			board.setContent(rs.getString("content"));
+		}
+		return board;
+	}
+	
+	// insert
+	
+	// update
+	
+	// delete
 }

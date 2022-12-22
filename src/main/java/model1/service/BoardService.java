@@ -15,6 +15,7 @@ public class BoardService {
 	// 3) dao에 있으면 안되는 비지니스 로직 처리
 	private DBUtil DBUtil;
 	private BoardDao boardDao;
+	
 	public ArrayList<Board> getBoardList() {
 		Connection conn = null;
 		boardDao = new BoardDao();
@@ -33,11 +34,38 @@ public class BoardService {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtil.close(null, null, conn);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return list;
 	}
+	
+	public Board getBoardOne(int no) {
+		Connection conn = null;
+		boardDao = new BoardDao();
+		Board board = null;
+		try {
+			conn = DBUtil.getConnection();
+			//conn.setAutoCommit(false);
+			board = boardDao.selectBoardOne(conn, no);
+			
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return board;
+	}
+	
 }

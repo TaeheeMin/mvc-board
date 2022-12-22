@@ -16,21 +16,4 @@ public class DBUtil {
 		Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 		return conn;
 	}
-	
-	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
-		try {
-			if(rs != null) {
-				rs.close(); 
-			}
-			if(stmt != null) {
-				stmt.close();
-			}
-			if(conn != null) {
-				conn.close();
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }
