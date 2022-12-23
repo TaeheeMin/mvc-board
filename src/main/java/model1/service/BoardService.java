@@ -16,6 +16,7 @@ public class BoardService {
 	private DBUtil DBUtil;
 	private BoardDao boardDao;
 	
+	// list
 	public ArrayList<Board> getBoardList() {
 		Connection conn = null;
 		boardDao = new BoardDao();
@@ -42,6 +43,7 @@ public class BoardService {
 		return list;
 	}
 	
+	// board One
 	public Board getBoardOne(int no) {
 		Connection conn = null;
 		boardDao = new BoardDao();
@@ -99,7 +101,6 @@ public class BoardService {
 	}
 	
 	// modify
-	// 1-2) modify
 	public int modifyBoard(int no, String title, String content) {
 		int result = 0;
 		Connection conn = null;
@@ -127,6 +128,7 @@ public class BoardService {
 		}
 		return result;
 	}
+	
 	// remove
 	public int removeBoard(int no) {
 		int result = 0;
@@ -155,5 +157,4 @@ public class BoardService {
 		}
 		return result;
 	}
-	
 }

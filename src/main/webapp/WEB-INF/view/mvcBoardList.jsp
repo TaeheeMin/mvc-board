@@ -1,25 +1,22 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model1.service.*"%>
+<%@page import="java.util.*"%>
 <%@page import="model1.vo.*"%>
-<%@page import="model1.dao.*"%>
-<%@page import="java.sql.*" %>
-
+<%
+	// 컨트롤러에서 공유한 모델 데이터 셋팅
+	ArrayList<Board> list = (ArrayList<Board>)(request.getAttribute("list"));
+%>
+<!-- view -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>MODEL1 BOARD LIST</title>
+		<title>MVC BOARD LIST</title>
 	</head>
 	
 	<body>
-		<h1>MODEL1 BOARD LIST</h1>
-		<%
-			BoardService boardService = new BoardService();
-			ArrayList<Board> list = boardService.getBoardList();
-		%>
+		<h1>MVC BOARD LIST</h1>
 		<div>
-			<a href="<%=request.getContextPath()%>/model1/m1AddBoardForm.jsp">글등록</a>
+			<a href="<%=request.getContextPath()%>/mvc/AddBoardFormController">글등록</a>
 		</div>
 		<table border="1">
 			<thead>
