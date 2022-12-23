@@ -6,7 +6,7 @@
 	
 	// 유효성 검사 
 	if(request.getParameter("no") == null) {
-		response.sendRedirect(request.getContextPath() + "/jsp/jspAddBoardList.jsp");
+		response.sendRedirect(request.getContextPath() + "/model1/m1BoardList.jsp");
 		return;
 	}
 	
@@ -44,8 +44,8 @@
 			</tr>
 		</table>
 		<div>
-			<a href='<%=request.getContextPath()%>/jsp/jspModifyBoardForm.jsp?no=<%=board.getNo()%>'>수정</a>
-			<a href='<%=request.getContextPath()%>/jsp/jspRemoveBoard.jsp?no=<%=board.getNo()%>'>삭제</a>
+			<a href='<%=request.getContextPath()%>/model1/m1ModifyBoardForm.jsp?no=<%=board.getNo()%>'>수정</a>
+			<a href='<%=request.getContextPath()%>/model1/m1RemoveBoardAction.jsp?no=<%=board.getNo()%>'>삭제</a>
 		</div>
 	</body>
 </html>

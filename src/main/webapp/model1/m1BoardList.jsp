@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model1.service.BoardService"%>
+<%@page import="model1.service.*"%>
 <%@page import="model1.*" %>
 <%@page import="model1.vo.*"%>
 <%@page import="model1.dao.*"%>

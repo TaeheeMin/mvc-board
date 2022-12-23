@@ -45,8 +45,38 @@ public class BoardDao {
 	}
 	
 	// insert
+	public int insertBoard(Connection conn, String title, String content) throws Exception {
+		int result = 0;
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO board(title, content) VALUES(?,?)";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, title);
+		stmt.setString(2, content);
+		result = stmt.executeUpdate();
+		return result;
+	}
 	
 	// update
+	public int updateBoard(Connection conn, int no, String title, String content) throws Exception {
+		int result = 0;
+		PreparedStatement stmt = null;
+		String sql ="UPDATE board SET title =?, content=? WHERE no=?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, title);
+		stmt.setString(2, content);
+		stmt.setInt(3, no);
+		result = stmt.executeUpdate();
+		return result;
+	}
 	
 	// delete
+	public int deleteBoard(Connection conn, int no) throws Exception {
+		int result = 0;
+		PreparedStatement stmt = null;
+		String sql = "DELETE FROM board WHERE no = ?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, no);
+		result = stmt.executeUpdate();
+		return result;
+	}
 }

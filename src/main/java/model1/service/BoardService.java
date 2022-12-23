@@ -22,9 +22,9 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		try {
 			conn = DBUtil.getConnection();
-			//conn.setAutoCommit(false);
+			conn.setAutoCommit(false);
 			list = boardDao.selectBoardList(conn);
-			
+			conn.commit();
 		} catch (Exception e) {
 			try {
 				conn.rollback();
@@ -48,9 +48,9 @@ public class BoardService {
 		Board board = null;
 		try {
 			conn = DBUtil.getConnection();
-			//conn.setAutoCommit(false);
+			conn.setAutoCommit(false);
 			board = boardDao.selectBoardOne(conn, no);
-			
+			conn.commit();
 		} catch (Exception e) {
 			try {
 				conn.rollback();
@@ -58,6 +58,7 @@ public class BoardService {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+			
 		} finally {
 			try {
 				conn.close();
@@ -66,6 +67,93 @@ public class BoardService {
 			}
 		}
 		return board;
+	}
+	
+	// add
+	public int addBoard(String content, String title) {
+		int result = 0;
+		Connection conn = null;
+		boardDao = new BoardDao();
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			result = boardDao.insertBoard(conn, title, content);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				System.out.println("예외발생");
+			}
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	// modify
+	// 1-2) modify
+	public int modifyBoard(int no, String title, String content) {
+		int result = 0;
+		Connection conn = null;
+		boardDao = new BoardDao();
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			result = boardDao.updateBoard(conn, no, title, content);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				System.out.println("예외발생");
+			}
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	// remove
+	public int removeBoard(int no) {
+		int result = 0;
+		Connection conn = null;
+		boardDao = new BoardDao();
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			result = boardDao.deleteBoard(conn, no);
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				System.out.println("예외발생");
+			}
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 	
 }
